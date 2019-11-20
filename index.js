@@ -44,25 +44,27 @@
 
 // middleware
 
-const express = require('express');
+// const express = require('express');
 
-const app = express()
+// const app = express()
 
-app.get('/booking', function(req, res, next) {
-    console.log('in first middleware do something');
-    next();
-},
+// app.get('/booking', function(req, res, next) {
+//     console.log('in first middleware do something');
+//     next();
+// },
 
-function(req, res, next){
-    console.log('in the second middleware');
-    var x = {name: "Bikash"}
-    res.status(200)
-    res.set({
-        'Content-Type': 'application/json'
-    })
-    res.send('hello')
-})
-app.listen(3003);
+// function(req, res, next){
+//     console.log('in the second middleware');
+//     var x = {name: "Bikash"}
+//     res.status(200)
+//     res.set({
+//         'Content-Type': 'application/json'
+//     })
+//     res.send('hello')
+// })
+// app.listen(3003);
+
+var a = 10;
 
 
 
