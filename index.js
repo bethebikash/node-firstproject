@@ -16,9 +16,6 @@
 // var app2 = http.createServer(cb2);
 // app2.listen(3001);
 
-
-
-
 // express
 
 // const express = require('express');
@@ -64,8 +61,27 @@
 // })
 // app.listen(3003);
 
-var a = 10;
 
+function cbFunctionWhenValueisReturned(err, result){
+    if(err == null){
 
+    } else{
+        // actual work after square is obtained
+    }
+}
 
+unknownTimeBigfunctionSqr(10, cbFunctionWhenValueisReturned);
 
+function unknownTimeBigfunctionSqr(val, cb){
+    // which takes long time
+    var result = null;
+    var err = null;
+
+    if(typeof(val) == "number"){
+        result = val*val
+    } else{
+        err = new Error('The value isnt a number')
+    }
+
+    cb(err,result);
+}
