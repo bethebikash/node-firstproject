@@ -1,87 +1,35 @@
-// var http = require('http');
+const express = require('express')
+const parcer = require('body-parser')
+const User = require('./models/User')
+const UserController = require('./controllers/UserController')
+const AuthController = require('./controllers/AuthController')
 
-// function cb(req, res){
-//     res.statusCode = 200;
-//     res.end("Hello form the application");
-// }
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
+const path = require('path')
 
-// function cb2(req, res){
-//     res.statusCode = 200;
-//     res.end("Hello form second app");
-// }
+const app = express()
 
-// var app = http.createServer(cb);
-// app.listen(3000);
+app.use(parcer.urlencoded({ extended: true }))
 
-// var app2 = http.createServer(cb2);
-// app2.listen(3001);
+app.post(
+    '/registration',
+    UserController.validator,
+    UserController.checkIfUserExist,
+    UserController.hashGen,
+    UserController.register
+)
 
-// express
+app.post('/profile', upload.single('profileImg'), function(req, res, next) {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+})
 
-// const express = require('express');
-
-// const app = express()
-
-
-// app.get('/registration', function(req, res) {
-//     console.log('in registration');
-//     var x = {name: "Bikash"}
-//     res.status(200)
-//     res.set({
-//         'Content-Type': 'application/json'
-//     })
-//     res.send('hello')
-// })
-// app.listen(3002);
-
-// const express = require('express');
-
-// const app = express()
+app.post('/login', AuthController.validator, AuthController.passwordCheck, AuthController.genToken)
+app.delete('/user/:id', AuthController.varifyToken, UserController.deleteUser)
 
 
-// middleware
 
-// const express = require('express');
-
-// const app = express()
-
-// app.get('/booking', function(req, res, next) {
-//     console.log('in first middleware do something');
-//     next();
-// },
-
-// function(req, res, next){
-//     console.log('in the second middleware');
-//     var x = {name: "Bikash"}
-//     res.status(200)
-//     res.set({
-//         'Content-Type': 'application/json'
-//     })
-//     res.send('hello')
-// })
-// app.listen(3003);
+app.listen(5033)
 
 
-function cbFunctionWhenValueisReturned(err, result){
-    if(err == null){
-
-    } else{
-        // actual work after square is obtained
-    }
-}
-
-unknownTimeBigfunctionSqr(10, cbFunctionWhenValueisReturned);
-
-function unknownTimeBigfunctionSqr(val, cb){
-    // which takes long time
-    var result = null;
-    var err = null;
-
-    if(typeof(val) == "number"){
-        result = val*val
-    } else{
-        err = new Error('The value isnt a number')
-    }
-
-    cb(err,result);
-}
