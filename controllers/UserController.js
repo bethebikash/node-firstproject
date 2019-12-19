@@ -38,8 +38,11 @@ function hashGen(req, res, next) {
 
 function register(req, res, next) {
     // Note: using `force: true` will drop the table if it already exists
+
+    
     User.sync().then(() => {
         // Now the `users` table in the database corresponds to the model definition
+
         return User.create({
             username: req.body.username,
             password: req.hash

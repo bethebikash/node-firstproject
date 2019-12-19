@@ -55,12 +55,12 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpecs))
  *    - application/x-www-form-urlencoded
  *   parameters:
  *    - name: username
- *      in: formdata
- *      type: string
+ *      in: formData
+ *      type: string 
  *      required: true
- *      description: pleasae provide unique username
+ *      description: Please provide unique username
  *    - name: password
- *      in: formdata
+ *      in: formData
  *      type: string
  *      required: true
  *      description: pleasae provide strong password
@@ -86,6 +86,39 @@ app.post('/profile', upload.single('profileImg'), function(req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
 })
+
+
+/**
+ * @swagger
+ * /login:
+ *  post:
+ *   tags:
+ *    - Users
+ *   description: User login testing
+ *   produces:
+ *    - application/json
+ *   consumes:
+ *    - application/x-www-form-urlencoded
+ *   parameters:
+ *    - name: username
+ *      in: formData
+ *      type: string 
+ *      required: true
+ *      description: Please provide username
+ *    - name: password
+ *      in: formData
+ *      type: string
+ *      required: true
+ *      description: pleasae provide password
+ *   responses:
+ *    201:
+ *     description: login successfully
+ *    400:
+ *     description: invalid username or password
+ *    500:
+ *     description: internal server errors
+ *
+ */
 
 app.post(
     '/login',
