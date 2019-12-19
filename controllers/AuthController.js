@@ -57,8 +57,9 @@ function genToken(req, res, next) {
     })
 }
 
-function varifyToken(req, res, next) {
-    // const token = req.headers.authorization.slice(7,req.headers.authorization)
+function verifyToken(req, res, next) {
+
+    const token = req.headers.authorization.slice(7,req.headers.authorization.length)
    
     jwt.verify(token, 'key', function(err, decoded) {
         if (err) {
@@ -73,5 +74,5 @@ module.exports = {
     validator,
     passwordCheck,
     genToken,
-    varifyToken
+    verifyToken
 }

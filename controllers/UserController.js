@@ -67,10 +67,31 @@ function deleteUser(req, res, next) {
     })
 }
 
+function editUser(req, res, next){
+    // if (req.params.id === null || req.params.id === undefined) {
+    //     res.json({ status: 404, message: 'user not found' })
+    // }
+
+    // User.update({username: 'bethebikash'}{
+    //     where: {
+    //       id: req.params.id
+    //     }
+    //   }).then(function(result) {
+    //     if (result === 0) {
+    //         res.status(500)
+    //         res.json({ status: 500, message: 'couldnot update' })
+    //     } else {
+    //         res.status(200)
+    //         res.json({ status: 500, message: 'User updated successfully' })
+    //     }
+    // })
+}
+
 module.exports = {
     validator,
     checkIfUserExist,
     hashGen,
     register,
-    deleteUser
+    deleteUser,
+    editUser
 }
