@@ -16,6 +16,8 @@ const User = dbConfig.sequelize.define(
     {
         // options
         // freezeTablename:true  --to set the table name as defined in the momdule.
+
+        //  paranoid: true  -- to set deletedAt field in the table for soft delete.
         paranoid: true
     }
 )

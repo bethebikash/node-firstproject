@@ -157,6 +157,9 @@ app.post(
 
 app.delete('/user/:id', AuthController.verifyToken, UserController.deleteUser)
 
-app.patch('/user/:id', AuthController.verifyToken, UserController.editUser)
+app.put('/user/:id', AuthController.verifyToken, UserController.editUser)
 
 app.listen(3000)
+
+
+module.exports = app
